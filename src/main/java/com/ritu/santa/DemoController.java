@@ -35,7 +35,7 @@ public class DemoController {
 		return "index";
 	}	
 	@RequestMapping("/process")
-	String process(HttpServletRequest request) throws FileNotFoundException {
+	String process(HttpServletRequest request) {
 			System.out.println("Process");
 			
 			
@@ -59,25 +59,28 @@ public class DemoController {
 			Integer match=DemoApplication.dev_array[rnd];
 			if(DemoApplication.secret.containsKey(id)) {
 				match=DemoApplication.secret.get(id);
+			}else {
+				
+				while(DemoApplication.secret.containsValue(match) || id.equals(match) ) {
+					rnd=(int) (DemoApplication.random.nextInt(DemoApplication.dev.size()));
+					System.out.println(rnd);
+						
+					match=DemoApplication.dev_array[rnd];
+					System.out.println(match);
+					
+					System.out.println("Match:::"+DemoApplication.secret.containsKey(match));
+					System.out.println(id);
+					
+					System.out.println("Match:"+DemoApplication.dev.get(match));
+					
+				}
+				
 			}
 			System.out.println(rnd);
 			System.out.println(match);
 			System.out.println(id);
 			System.out.println("Match:"+DemoApplication.dev.get(match));
 			
-			while(DemoApplication.secret.containsValue(match) || id.equals(match) ) {
-				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.dev.size()));
-				System.out.println(rnd);
-					
-				match=DemoApplication.dev_array[rnd];
-				System.out.println(match);
-				
-				System.out.println("Match:::"+DemoApplication.secret.containsKey(match));
-				System.out.println(id);
-				
-				System.out.println("Match:"+DemoApplication.dev.get(match));
-				
-			}
 			//found the match
 			DemoApplication.secret.put(id, match);
 			saveSecret();
@@ -94,15 +97,17 @@ public class DemoController {
 
 			if(DemoApplication.secret.containsKey(id)) {
 				match=DemoApplication.secret.get(id);
+			}else {
+				
+				while(DemoApplication.secret.containsValue(match) || id.equals(match)) {
+					rnd=(int) (DemoApplication.random.nextInt(DemoApplication.support.size()));
+					match=DemoApplication.support_array[rnd];
+					System.out.println("Match:"+DemoApplication.support.get(match));
+				}
 			}
 
 			System.out.println("Match:"+DemoApplication.support.get(match));
 			
-			while(DemoApplication.secret.containsValue(match) || id.equals(match)) {
-				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.support.size()));
-				match=DemoApplication.support_array[rnd];
-				System.out.println("Match:"+DemoApplication.support.get(match));
-			}
 			//found the match
 			DemoApplication.secret.put(id, match);
 			saveSecret();
@@ -117,12 +122,17 @@ public class DemoController {
 			Integer match=DemoApplication.manager_array[rnd];
 			if(DemoApplication.secret.containsKey(id)) {
 				match=DemoApplication.secret.get(id);
+			}else {
+
+				while(DemoApplication.secret.containsValue(match) || id.equals(match)) {
+					rnd=(int) (DemoApplication.random.nextInt(DemoApplication.manager.size()));
+					match=DemoApplication.manager_array[rnd];
+					System.out.println("Match:"+DemoApplication.manager.get(match));
+					
+				}
+
 			}
 
-			while(DemoApplication.secret.containsValue(match) || id.equals(match)) {
-				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.manager.size()));
-				match=DemoApplication.manager_array[rnd];
-			}
 			//found the match
 			DemoApplication.secret.put(id, match);
 			saveSecret();
