@@ -24,6 +24,7 @@ import com.google.gson.JsonObject;
 
 
 /*@Controller annotation as it a a request controller*/
+
 @Controller
 public class DemoController {
 
@@ -65,7 +66,7 @@ public class DemoController {
 			System.out.println("Match:"+DemoApplication.support.get(match));
 			
 			while(DemoApplication.secret.containsKey(match) || id.equals(match)) {
-				rnd=(int) (Math.random()*1000*1000%(DemoApplication.dev.size()+1));
+				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.dev.size()));
 				System.out.println(rnd);
 					
 				match=DemoApplication.dev_array[rnd];
@@ -98,7 +99,7 @@ public class DemoController {
 			System.out.println("Match:"+DemoApplication.support.get(match));
 			
 			while(DemoApplication.secret.containsKey(match) || id.equals(match)) {
-				rnd=(int) (Math.random()*1000%(DemoApplication.support.size()+1));
+				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.support.size()));
 				match=DemoApplication.support_array[rnd];
 				System.out.println("Match:"+DemoApplication.support.get(match));
 			}
@@ -119,7 +120,7 @@ public class DemoController {
 			}
 
 			while(DemoApplication.secret.containsKey(match) || id.equals(match)) {
-				rnd=(int) (Math.random()*1000%(DemoApplication.manager.size()+1));
+				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.manager.size()));
 				match=DemoApplication.manager_array[rnd];
 			}
 			//found the match

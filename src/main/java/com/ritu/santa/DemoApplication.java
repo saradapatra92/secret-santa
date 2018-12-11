@@ -6,14 +6,20 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 
 @SpringBootApplication
+@Component
 public class DemoApplication extends SpringBootServletInitializer {
 
 	public static Map<Integer, Integer> secret = new HashMap<Integer, Integer>();
@@ -32,12 +38,11 @@ public class DemoApplication extends SpringBootServletInitializer {
 	}
 
 	public static void main(String[] args) throws Exception {
-
 		SpringApplication.run(DemoApplication.class, args);
-		readData();
-
 	}
 
+
+    @PostConstruct
 	public static void readData() {
 		try {
 			Scanner in = new Scanner(new File("support.csv"));
