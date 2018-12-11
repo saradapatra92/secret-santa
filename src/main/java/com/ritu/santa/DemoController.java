@@ -63,9 +63,9 @@ public class DemoController {
 			System.out.println(rnd);
 			System.out.println(match);
 			System.out.println(id);
-			System.out.println("Match:"+DemoApplication.support.get(match));
+			System.out.println("Match:"+DemoApplication.dev.get(match));
 			
-			while(DemoApplication.secret.containsKey(match) || id.equals(match)) {
+			while(DemoApplication.secret.containsValue(match) || id.equals(match) ) {
 				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.dev.size()));
 				System.out.println(rnd);
 					
@@ -75,7 +75,7 @@ public class DemoController {
 				System.out.println("Match:::"+DemoApplication.secret.containsKey(match));
 				System.out.println(id);
 				
-				System.out.println("Match:"+DemoApplication.support.get(match));
+				System.out.println("Match:"+DemoApplication.dev.get(match));
 				
 			}
 			//found the match
@@ -98,7 +98,7 @@ public class DemoController {
 
 			System.out.println("Match:"+DemoApplication.support.get(match));
 			
-			while(DemoApplication.secret.containsKey(match) || id.equals(match)) {
+			while(DemoApplication.secret.containsValue(match) || id.equals(match)) {
 				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.support.size()));
 				match=DemoApplication.support_array[rnd];
 				System.out.println("Match:"+DemoApplication.support.get(match));
@@ -119,7 +119,7 @@ public class DemoController {
 				match=DemoApplication.secret.get(id);
 			}
 
-			while(DemoApplication.secret.containsKey(match) || id.equals(match)) {
+			while(DemoApplication.secret.containsValue(match) || id.equals(match)) {
 				rnd=(int) (DemoApplication.random.nextInt(DemoApplication.manager.size()));
 				match=DemoApplication.manager_array[rnd];
 			}
